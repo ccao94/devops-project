@@ -8,7 +8,6 @@ It is not strong isolation. Pods from different namespaces run on the same nodes
 
 ## Q2. Why does Kubernetes recreate the deleted pod? Which component is responsible?
 
-The Deployment asks for 3 replicas. We saw it in our test: the new pod was 111s old, the two others 3m25s (see `evidence/lab2/part2-dev.txt`).
+The Deployment asks for 3 replicas. When we deleted a pod, the ReplicaSet controller (in the controller manager) saw only 2 and created a new one.
 
-We saw it in our test: the new pod was 63s old, the two others 2m37s (see `evidence/lab2/part2-dev.txt`).
-
+We saw it in our test: the new pod was 111s old, the two others 3m25s (see `evidence/lab2/part2-dev.txt`).
