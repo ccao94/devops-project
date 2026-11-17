@@ -7,8 +7,8 @@
 - Direct push rejected: ![push rejected](evidence/lab1/push-rejected.png)
 - Failing pipeline: ![failing run](evidence/lab1/ci-failed.png)
 - Passing pipeline: ![passing run](evidence/lab1/ci-passed.png)
-- Published image: <package page URL> ![image on GHCR](evidence/lab1/ghcr-image.png)
-- Traceability: commit `640f471` (merge of PR #4) → [pipeline run](<run URL>) → `ghcr.io/ccao94/devops-project:640f471d0a267f320afec784cc7d4c953a2d4311`
+- Published image: https://github.com/ccao94/devops-project/pkgs/container/devops-project ![image on GHCR](evidence/lab1/ghcr-image.png)
+- Traceability: commit `640f471` (merge of PR #4) → CI run on main → `ghcr.io/ccao94/devops-project:640f471d0a267f320afec784cc7d4c953a2d4311`
 
 ## Q1. Why forbid direct pushes to main?
 
