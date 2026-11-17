@@ -9,6 +9,6 @@ public class HealthController {
     // used by Docker, Kubernetes probes and monitoring later
     @GetMapping("/health")
     public String health() {
-        return "OK";
+        return "KO";
     }
 }
