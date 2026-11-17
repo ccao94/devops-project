@@ -13,4 +13,4 @@ Requires Java 21.
 
 ## Labs
 
-- [Lab 1: Git, CI/CD and Docker](LAB1.md)
+- [Lab 1: Git, CI/CD and Docker](lab1.md)
