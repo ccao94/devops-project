@@ -25,7 +25,7 @@ class DevopsProjectApplicationTests {
   void healthReturnsOk() throws Exception {
     mvc.perform(get("/health"))
         .andExpect(status().isOk())
-        .andExpect(content().string("KO"));
+        .andExpect(content().string("OK"));
   }
 
 }
