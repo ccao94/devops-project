@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# env files (secrets stay local)
+.env
+.env.*
+
+# logs
+npm-debug.log*
+coverage/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
