@@ -34,3 +34,7 @@ build/
 
 .env
 .env.*
+
+### Metals (Scala extension for VS Code) ###
+.metals/
+.bloop/
