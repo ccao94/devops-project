@@ -4,7 +4,9 @@ Team: Cao Cuong CAO, Igor GUO, Laurent CHHUOK, Léon GARD
 
 ## Run locally
 
+Requires Java 21.
+
 ```bash
-npm ci
-npm start   # http://localhost:3000/health
+./mvnw spring-boot:run   # http://localhost:8080/health
+./mvnw test
 ```
