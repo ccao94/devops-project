@@ -10,3 +10,7 @@ Requires Java 21.
 ./mvnw spring-boot:run   # http://localhost:8080/health
 ./mvnw test
 ```
+
+## Labs
+
+- [Lab 1: Git, CI/CD and Docker](LAB1.md)
