@@ -1,0 +1,58 @@
+Name:                   myapp
+Namespace:              dev
+CreationTimestamp:      Wed, 18 Nov 2026 14:25:28 +0100
+Labels:                 app=myapp
+                        env=dev
+Annotations:            deployment.kubernetes.io/revision: 14
+                        kubernetes.io/change-cause: v2: new response message
+Selector:               app=myapp
+Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=myapp
+           env=dev
+  Containers:
+   myapp:
+    Image:      ghcr.io/ccao94/devops-project:v2
+    Port:       8080/TCP
+    Host Port:  0/TCP
+    Limits:
+      cpu:     500m
+      memory:  256Mi
+    Requests:
+      cpu:      100m
+      memory:   128Mi
+    Liveness:   http-get http://:8080/health delay=10s timeout=1s period=10s #success=1 #failure=3
+    Readiness:  http-get http://:8080/health delay=0s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      APP_ENV:     <set to the key 'APP_ENV' of config map 'myapp-config-6m894k5c89'>  Optional: false
+      API_KEY:     <set to the key 'API_KEY' in secret 'myapp-secret'>                 Optional: false
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  myapp-54c8475ddd (0/0 replicas created), myapp-5dc86d56cb (0/0 replicas created), myapp-7576b4977 (0/0 replicas created), myapp-d6d4d875f (0/0 replicas created), myapp-58d77d86f6 (0/0 replicas created), myapp-6d7b5fcf45 (0/0 replicas created), myapp-85db85865d (0/0 replicas created), myapp-6767878d45 (0/0 replicas created), myapp-676999649f (0/0 replicas created), myapp-54bb54fc5c (0/0 replicas created)
+NewReplicaSet:   myapp-6559857b58 (3/3 replicas created)
+Events:
+  Type    Reason             Age                 From                   Message
+  ----    ------             ----                ----                   -------
+  Normal  ScalingReplicaSet  53m                 deployment-controller  Scaled down replica set myapp-58d77d86f6 from 3 to 1
+  Normal  ScalingReplicaSet  53m                 deployment-controller  Scaled down replica set myapp-85db85865d from 1 to 0
+  Normal  ScalingReplicaSet  53m                 deployment-controller  Scaled up replica set myapp-6767878d45 from 0 to 1
+  Normal  ScalingReplicaSet  39m                 deployment-controller  Scaled up replica set myapp-58d77d86f6 from 1 to 2
+  Normal  ScalingReplicaSet  39m                 deployment-controller  Scaled up replica set myapp-6767878d45 from 1 to 2
+  Normal  ScalingReplicaSet  38m                 deployment-controller  Scaled down replica set myapp-6767878d45 from 2 to 1
+  Normal  ScalingReplicaSet  38m                 deployment-controller  Scaled up replica set myapp-676999649f from 0 to 1
+  Normal  ScalingReplicaSet  38m                 deployment-controller  Scaled down replica set myapp-6767878d45 from 1 to 0
+  Normal  ScalingReplicaSet  38m                 deployment-controller  Scaled up replica set myapp-676999649f from 1 to 2
+  Normal  ScalingReplicaSet  38m                 deployment-controller  Scaled down replica set myapp-58d77d86f6 from 2 to 1
+  Normal  ScalingReplicaSet  38m                 deployment-controller  Scaled up replica set myapp-676999649f from 2 to 3
+  Normal  ScalingReplicaSet  38m                 deployment-controller  Scaled down replica set myapp-58d77d86f6 from 1 to 0
+  Normal  ScalingReplicaSet  16m (x21 over 89m)  deployment-controller  (combined from similar events): Scaled up replica set myapp-676999649f from 0 to 1
