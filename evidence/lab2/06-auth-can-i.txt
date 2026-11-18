@@ -1,0 +1,7 @@
+list pods (dev):        yes
+get pods (dev):         yes
+delete pods (dev):      no
+create pods (dev):      no
+get secrets (dev):      no
+list deployments (dev): no
+list pods (prod):       no

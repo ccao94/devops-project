@@ -1,0 +1,12 @@
+NAME               DESIRED   CURRENT   READY   AGE    CONTAINERS   IMAGES                                                                   SELECTOR
+myapp-54bb54fc5c   0         0         0       28m    myapp        ghcr.io/ccao94/devops-project:does-not-exist                             app=myapp,pod-template-hash=54bb54fc5c
+myapp-54c8475ddd   0         0         0       146m   myapp        ghcr.io/ccao94/devops-project:local                                      app=myapp,pod-template-hash=54c8475ddd
+myapp-58d77d86f6   0         0         0       89m    myapp        ghcr.io/ccao94/devops-project:local                                      app=myapp,pod-template-hash=58d77d86f6
+myapp-5dc86d56cb   0         0         0       105m   myapp        ghcr.io/ccao94/devops-project:640f471d0a267f320afec784cc7d4c953a2d4311   app=myapp,pod-template-hash=5dc86d56cb
+myapp-6559857b58   3         3         3       34m    myapp        ghcr.io/ccao94/devops-project:v2                                         app=myapp,pod-template-hash=6559857b58
+myapp-6767878d45   0         0         0       54m    myapp        ghcr.io/ccao94/devops-project:dev                                        app=myapp,pod-template-hash=6767878d45
+myapp-676999649f   0         0         0       38m    myapp        ghcr.io/ccao94/devops-project:v1                                         app=myapp,pod-template-hash=676999649f
+myapp-6d7b5fcf45   0         0         0       89m    myapp        ghcr.io/ccao94/devops-project:640f471d0a267f320afec784cc7d4c953a2d4311   app=myapp,pod-template-hash=6d7b5fcf45
+myapp-7576b4977    0         0         0       100m   myapp        ghcr.io/ccao94/devops-project:local                                      app=myapp,pod-template-hash=7576b4977
+myapp-85db85865d   0         0         0       81m    myapp        ghcr.io/ccao94/devops-project:local                                      app=myapp,pod-template-hash=85db85865d
+myapp-d6d4d875f    0         0         0       90m    myapp        ghcr.io/ccao94/devops-project:local                                      app=myapp,pod-template-hash=d6d4d875f

@@ -1,0 +1,176 @@
+LAST SEEN   TYPE      REASON              OBJECT                        MESSAGE
+16m         Normal    ScalingReplicaSet   deployment/myapp              (combined from similar events): Scaled up replica set myapp-676999649f from 0 to 1
+56m         Normal    Pulled              pod/myapp-85db85865d-f2ndh    Container image "ghcr.io/ccao94/devops-project:local" already present on machine and can be accessed by the pod
+56m         Warning   Unhealthy           pod/myapp-85db85865d-f2ndh    Readiness probe failed: Get "http://10.244.0.16:8080/healths": dial tcp 10.244.0.16:8080: connect: connection refused
+50m         Normal    Pulling             pod/myapp-6767878d45-js2p9    Pulling image "ghcr.io/ccao94/devops-project:dev"
+53m         Normal    SuccessfulDelete    replicaset/myapp-58d77d86f6   Deleted pod: myapp-58d77d86f6-6xpvd
+53m         Normal    Scheduled           pod/myapp-6767878d45-js2p9    Successfully assigned dev/myapp-6767878d45-js2p9 to devops-lab-control-plane
+53m         Normal    SuccessfulCreate    replicaset/myapp-6767878d45   Created pod: myapp-6767878d45-js2p9
+53m         Normal    Killing             pod/myapp-58d77d86f6-6xpvd    Stopping container myapp
+53m         Normal    Killing             pod/myapp-58d77d86f6-jmvv7    Stopping container myapp
+53m         Normal    SuccessfulDelete    replicaset/myapp-85db85865d   Deleted pod: myapp-85db85865d-f2ndh
+53m         Normal    SuccessfulDelete    replicaset/myapp-58d77d86f6   Deleted pod: myapp-58d77d86f6-jmvv7
+53m         Normal    ScalingReplicaSet   deployment/myapp              Scaled down replica set myapp-58d77d86f6 from 3 to 1
+53m         Normal    ScalingReplicaSet   deployment/myapp              Scaled down replica set myapp-85db85865d from 1 to 0
+53m         Normal    ScalingReplicaSet   deployment/myapp              Scaled up replica set myapp-6767878d45 from 0 to 1
+50m         Warning   Failed              pod/myapp-6767878d45-js2p9    Failed to pull image "ghcr.io/ccao94/devops-project:dev": rpc error: code = NotFound desc = failed to pull and unpack image "ghcr.io/ccao94/devops-project:dev": failed to resolve reference "ghcr.io/ccao94/devops-project:dev": ghcr.io/ccao94/devops-project:dev: not found
+50m         Warning   Failed              pod/myapp-6767878d45-js2p9    Error: ErrImagePull
+38m         Normal    BackOff             pod/myapp-6767878d45-js2p9    Back-off pulling image "ghcr.io/ccao94/devops-project:dev"
+38m         Warning   Failed              pod/myapp-6767878d45-js2p9    Error: ImagePullBackOff
+38m         Normal    Scheduled           pod/myapp-58d77d86f6-zb5g7    Successfully assigned dev/myapp-58d77d86f6-zb5g7 to devops-lab-control-plane
+38m         Normal    Created             pod/myapp-58d77d86f6-zb5g7    Container created
+38m         Normal    ScalingReplicaSet   deployment/myapp              Scaled up replica set myapp-58d77d86f6 from 1 to 2
+38m         Normal    Scheduled           pod/myapp-6767878d45-9ct5t    Successfully assigned dev/myapp-6767878d45-9ct5t to devops-lab-control-plane
+38m         Normal    SuccessfulCreate    replicaset/myapp-6767878d45   Created pod: myapp-6767878d45-9ct5t
+38m         Normal    Pulling             pod/myapp-6767878d45-9ct5t    Pulling image "ghcr.io/ccao94/devops-project:dev"
+38m         Normal    ScalingReplicaSet   deployment/myapp              Scaled up replica set myapp-6767878d45 from 1 to 2
+38m         Warning   Unhealthy           pod/myapp-58d77d86f6-zb5g7    Readiness probe failed: Get "http://10.244.0.32:8080/health": dial tcp 10.244.0.32:8080: connect: connection refused
+38m         Normal    Started             pod/myapp-58d77d86f6-zb5g7    Container started
+38m         Normal    Pulled              pod/myapp-58d77d86f6-zb5g7    Container image "ghcr.io/ccao94/devops-project:local" already present on machine and can be accessed by the pod
+38m         Normal    SuccessfulCreate    replicaset/myapp-58d77d86f6   Created pod: myapp-58d77d86f6-zb5g7
+38m         Warning   Failed              pod/myapp-6767878d45-9ct5t    Failed to pull image "ghcr.io/ccao94/devops-project:dev": rpc error: code = NotFound desc = failed to pull and unpack image "ghcr.io/ccao94/devops-project:dev": failed to resolve reference "ghcr.io/ccao94/devops-project:dev": ghcr.io/ccao94/devops-project:dev: not found
+38m         Warning   Failed              pod/myapp-6767878d45-9ct5t    Error: ErrImagePull
+38m         Normal    BackOff             pod/myapp-6767878d45-9ct5t    Back-off pulling image "ghcr.io/ccao94/devops-project:dev"
+38m         Warning   Failed              pod/myapp-6767878d45-9ct5t    Error: ImagePullBackOff
+38m         Normal    SuccessfulCreate    replicaset/myapp-676999649f   Created pod: myapp-676999649f-9nsf2
+38m         Normal    SuccessfulDelete    replicaset/myapp-6767878d45   Deleted pod: myapp-6767878d45-9ct5t
+38m         Normal    Scheduled           pod/myapp-676999649f-9nsf2    Successfully assigned dev/myapp-676999649f-9nsf2 to devops-lab-control-plane
+38m         Normal    ScalingReplicaSet   deployment/myapp              Scaled down replica set myapp-6767878d45 from 2 to 1
+38m         Normal    ScalingReplicaSet   deployment/myapp              Scaled up replica set myapp-676999649f from 0 to 1
+38m         Normal    Started             pod/myapp-676999649f-9nsf2    Container started
+38m         Normal    Pulled              pod/myapp-676999649f-9nsf2    Container image "ghcr.io/ccao94/devops-project:v1" already present on machine and can be accessed by the pod
+38m         Warning   Unhealthy           pod/myapp-676999649f-9nsf2    Readiness probe failed: Get "http://10.244.0.34:8080/health": dial tcp 10.244.0.34:8080: connect: connection refused
+38m         Normal    Created             pod/myapp-676999649f-9nsf2    Container created
+38m         Normal    ScalingReplicaSet   deployment/myapp              Scaled up replica set myapp-676999649f from 1 to 2
+38m         Normal    Scheduled           pod/myapp-676999649f-2w2xl    Successfully assigned dev/myapp-676999649f-2w2xl to devops-lab-control-plane
+38m         Normal    SuccessfulCreate    replicaset/myapp-676999649f   Created pod: myapp-676999649f-2w2xl
+38m         Normal    SuccessfulDelete    replicaset/myapp-6767878d45   Deleted pod: myapp-6767878d45-js2p9
+38m         Normal    ScalingReplicaSet   deployment/myapp              Scaled down replica set myapp-6767878d45 from 1 to 0
+38m         Normal    Pulled              pod/myapp-676999649f-2w2xl    Container image "ghcr.io/ccao94/devops-project:v1" already present on machine and can be accessed by the pod
+38m         Warning   Unhealthy           pod/myapp-676999649f-2w2xl    Readiness probe failed: Get "http://10.244.0.35:8080/health": dial tcp 10.244.0.35:8080: connect: connection refused
+38m         Normal    Started             pod/myapp-676999649f-2w2xl    Container started
+38m         Normal    Created             pod/myapp-676999649f-2w2xl    Container created
+37m         Normal    ScalingReplicaSet   deployment/myapp              Scaled up replica set myapp-676999649f from 2 to 3
+37m         Normal    Created             pod/myapp-676999649f-2bpj6    Container created
+37m         Normal    ScalingReplicaSet   deployment/myapp              Scaled down replica set myapp-58d77d86f6 from 2 to 1
+37m         Normal    Killing             pod/myapp-58d77d86f6-zb5g7    Stopping container myapp
+37m         Normal    SuccessfulDelete    replicaset/myapp-58d77d86f6   Deleted pod: myapp-58d77d86f6-zb5g7
+37m         Normal    SuccessfulCreate    replicaset/myapp-676999649f   Created pod: myapp-676999649f-2bpj6
+37m         Warning   Unhealthy           pod/myapp-676999649f-2bpj6    Readiness probe failed: Get "http://10.244.0.36:8080/health": dial tcp 10.244.0.36:8080: connect: connection refused
+37m         Normal    Started             pod/myapp-676999649f-2bpj6    Container started
+37m         Normal    Scheduled           pod/myapp-676999649f-2bpj6    Successfully assigned dev/myapp-676999649f-2bpj6 to devops-lab-control-plane
+37m         Normal    Pulled              pod/myapp-676999649f-2bpj6    Container image "ghcr.io/ccao94/devops-project:v1" already present on machine and can be accessed by the pod
+37m         Normal    SuccessfulDelete    replicaset/myapp-58d77d86f6   Deleted pod: myapp-58d77d86f6-ctmvl
+37m         Normal    Killing             pod/myapp-58d77d86f6-ctmvl    Stopping container myapp
+37m         Normal    ScalingReplicaSet   deployment/myapp              Scaled down replica set myapp-58d77d86f6 from 1 to 0
+34m         Normal    Scheduled           pod/curl                      Successfully assigned dev/curl to devops-lab-control-plane
+34m         Normal    Pulling             pod/curl                      Pulling image "curlimages/curl"
+34m         Normal    Pulled              pod/curl                      Successfully pulled image "curlimages/curl" in 17.705s (17.705s including waiting). Image size: 11116806 bytes.
+34m         Normal    Created             pod/curl                      Container created
+34m         Normal    Started             pod/curl                      Container started
+33m         Normal    SuccessfulCreate    replicaset/myapp-6559857b58   Created pod: myapp-6559857b58-c82hl
+33m         Normal    Scheduled           pod/myapp-6559857b58-c82hl    Successfully assigned dev/myapp-6559857b58-c82hl to devops-lab-control-plane
+33m         Warning   Unhealthy           pod/myapp-6559857b58-c82hl    Readiness probe failed: Get "http://10.244.0.38:8080/health": dial tcp 10.244.0.38:8080: connect: connection refused
+33m         Normal    Started             pod/myapp-6559857b58-c82hl    Container started
+33m         Normal    Pulled              pod/myapp-6559857b58-c82hl    Container image "ghcr.io/ccao94/devops-project:v2" already present on machine and can be accessed by the pod
+33m         Normal    Created             pod/myapp-6559857b58-c82hl    Container created
+33m         Normal    Created             pod/myapp-6559857b58-scvpl    Container created
+33m         Normal    Scheduled           pod/myapp-6559857b58-scvpl    Successfully assigned dev/myapp-6559857b58-scvpl to devops-lab-control-plane
+33m         Normal    SuccessfulDelete    replicaset/myapp-676999649f   Deleted pod: myapp-676999649f-2bpj6
+33m         Normal    Pulled              pod/myapp-6559857b58-scvpl    Container image "ghcr.io/ccao94/devops-project:v2" already present on machine and can be accessed by the pod
+33m         Normal    Started             pod/myapp-6559857b58-scvpl    Container started
+33m         Warning   Unhealthy           pod/myapp-6559857b58-scvpl    Readiness probe failed: Get "http://10.244.0.39:8080/health": dial tcp 10.244.0.39:8080: connect: connection refused
+33m         Normal    Killing             pod/myapp-676999649f-2bpj6    Stopping container myapp
+33m         Normal    SuccessfulCreate    replicaset/myapp-6559857b58   Created pod: myapp-6559857b58-scvpl
+33m         Normal    Started             pod/myapp-6559857b58-stxrt    Container started
+33m         Normal    Scheduled           pod/myapp-6559857b58-stxrt    Successfully assigned dev/myapp-6559857b58-stxrt to devops-lab-control-plane
+33m         Normal    Killing             pod/myapp-676999649f-9nsf2    Stopping container myapp
+33m         Normal    Pulled              pod/myapp-6559857b58-stxrt    Container image "ghcr.io/ccao94/devops-project:v2" already present on machine and can be accessed by the pod
+33m         Normal    Created             pod/myapp-6559857b58-stxrt    Container created
+33m         Normal    SuccessfulDelete    replicaset/myapp-676999649f   Deleted pod: myapp-676999649f-9nsf2
+33m         Normal    SuccessfulCreate    replicaset/myapp-6559857b58   Created pod: myapp-6559857b58-stxrt
+33m         Warning   Unhealthy           pod/myapp-6559857b58-stxrt    Readiness probe failed: Get "http://10.244.0.40:8080/health": dial tcp 10.244.0.40:8080: connect: connection refused
+33m         Normal    SuccessfulDelete    replicaset/myapp-676999649f   Deleted pod: myapp-676999649f-2w2xl
+33m         Normal    Killing             pod/myapp-676999649f-2w2xl    Stopping container myapp
+33m         Normal    Scheduled           pod/curl                      Successfully assigned dev/curl to devops-lab-control-plane
+33m         Normal    Pulling             pod/curl                      Pulling image "curlimages/curl"
+33m         Normal    Pulled              pod/curl                      Successfully pulled image "curlimages/curl" in 1.083s (1.083s including waiting). Image size: 11116806 bytes.
+33m         Normal    Created             pod/curl                      Container created
+33m         Normal    Started             pod/curl                      Container started
+27m         Normal    Scheduled           pod/myapp-54bb54fc5c-hhmr2    Successfully assigned dev/myapp-54bb54fc5c-hhmr2 to devops-lab-control-plane
+27m         Normal    SuccessfulCreate    replicaset/myapp-54bb54fc5c   Created pod: myapp-54bb54fc5c-hhmr2
+26m         Normal    Pulling             pod/myapp-54bb54fc5c-hhmr2    Pulling image "ghcr.io/ccao94/devops-project:does-not-exist"
+26m         Warning   Failed              pod/myapp-54bb54fc5c-hhmr2    Failed to pull image "ghcr.io/ccao94/devops-project:does-not-exist": rpc error: code = NotFound desc = failed to pull and unpack image "ghcr.io/ccao94/devops-project:does-not-exist": failed to resolve reference "ghcr.io/ccao94/devops-project:does-not-exist": ghcr.io/ccao94/devops-project:does-not-exist: not found
+26m         Normal    BackOff             pod/myapp-54bb54fc5c-hhmr2    Back-off pulling image "ghcr.io/ccao94/devops-project:does-not-exist"
+26m         Warning   Failed              pod/myapp-54bb54fc5c-hhmr2    Error: ErrImagePull
+26m         Warning   Failed              pod/myapp-54bb54fc5c-hhmr2    Error: ImagePullBackOff
+25m         Normal    SuccessfulDelete    replicaset/myapp-54bb54fc5c   Deleted pod: myapp-54bb54fc5c-hhmr2
+25m         Normal    SuccessfulDelete    replicaset/myapp-6559857b58   Deleted pod: myapp-6559857b58-scvpl
+25m         Normal    Killing             pod/myapp-6559857b58-c82hl    Stopping container myapp
+25m         Normal    Killing             pod/myapp-6559857b58-scvpl    Stopping container myapp
+25m         Normal    SuccessfulDelete    replicaset/myapp-6559857b58   Deleted pod: myapp-6559857b58-c82hl
+16m         Normal    Pulling             pod/curl                      Pulling image "curlimages/curl"
+16m         Normal    Scheduled           pod/curl                      Successfully assigned dev/curl to devops-lab-control-plane
+16m         Normal    Created             pod/curl                      Container created
+16m         Normal    Pulled              pod/curl                      Successfully pulled image "curlimages/curl" in 1.687s (1.687s including waiting). Image size: 11116806 bytes.
+16m         Normal    Started             pod/curl                      Container started
+16m         Normal    Pulled              pod/myapp-6559857b58-zsgxm    Container image "ghcr.io/ccao94/devops-project:v2" already present on machine and can be accessed by the pod
+16m         Normal    SuccessfulCreate    replicaset/myapp-6559857b58   Created pod: myapp-6559857b58-zsgxm
+16m         Warning   Unhealthy           pod/myapp-6559857b58-zsgxm    Readiness probe failed: Get "http://10.244.0.45:8080/health": dial tcp 10.244.0.45:8080: connect: connection refused
+16m         Normal    Started             pod/myapp-6559857b58-zsgxm    Container started
+16m         Normal    Created             pod/myapp-6559857b58-zsgxm    Container created
+16m         Normal    Started             pod/myapp-6559857b58-lgtkm    Container started
+16m         Normal    Scheduled           pod/myapp-6559857b58-zsgxm    Successfully assigned dev/myapp-6559857b58-zsgxm to devops-lab-control-plane
+16m         Normal    SuccessfulCreate    replicaset/myapp-6559857b58   Created pod: myapp-6559857b58-lgtkm
+16m         Normal    Scheduled           pod/myapp-676999649f-pww4c    Successfully assigned dev/myapp-676999649f-pww4c to devops-lab-control-plane
+16m         Normal    Pulled              pod/myapp-676999649f-pww4c    Container image "ghcr.io/ccao94/devops-project:v1" already present on machine and can be accessed by the pod
+16m         Normal    SuccessfulCreate    replicaset/myapp-676999649f   Created pod: myapp-676999649f-pww4c
+16m         Normal    Scheduled           pod/myapp-6559857b58-lgtkm    Successfully assigned dev/myapp-6559857b58-lgtkm to devops-lab-control-plane
+16m         Normal    Pulled              pod/myapp-6559857b58-lgtkm    Container image "ghcr.io/ccao94/devops-project:v2" already present on machine and can be accessed by the pod
+16m         Normal    Created             pod/myapp-6559857b58-lgtkm    Container created
+16m         Normal    Created             pod/myapp-676999649f-pww4c    Container created
+16m         Normal    Started             pod/myapp-676999649f-pww4c    Container started
+16m         Warning   Unhealthy           pod/myapp-676999649f-pww4c    Readiness probe failed: Get "http://10.244.0.46:8080/health": dial tcp 10.244.0.46:8080: connect: connection refused
+16m         Warning   Unhealthy           pod/myapp-6559857b58-lgtkm    Readiness probe failed: Get "http://10.244.0.44:8080/health": dial tcp 10.244.0.44:8080: connect: connection refused
+16m         Normal    SuccessfulCreate    replicaset/myapp-676999649f   Created pod: myapp-676999649f-7gbw8
+16m         Warning   Unhealthy           pod/myapp-676999649f-7gbw8    Readiness probe failed: Get "http://10.244.0.47:8080/health": dial tcp 10.244.0.47:8080: connect: connection refused
+16m         Normal    Started             pod/myapp-676999649f-7gbw8    Container started
+16m         Normal    Created             pod/myapp-676999649f-7gbw8    Container created
+16m         Normal    Pulled              pod/myapp-676999649f-7gbw8    Container image "ghcr.io/ccao94/devops-project:v1" already present on machine and can be accessed by the pod
+16m         Normal    Scheduled           pod/myapp-676999649f-7gbw8    Successfully assigned dev/myapp-676999649f-7gbw8 to devops-lab-control-plane
+16m         Normal    Killing             pod/myapp-6559857b58-zsgxm    Stopping container myapp
+16m         Normal    SuccessfulDelete    replicaset/myapp-6559857b58   Deleted pod: myapp-6559857b58-zsgxm
+16m         Normal    Pulled              pod/myapp-676999649f-6shz8    Container image "ghcr.io/ccao94/devops-project:v1" already present on machine and can be accessed by the pod
+16m         Normal    Started             pod/myapp-676999649f-6shz8    Container started
+16m         Normal    Scheduled           pod/myapp-676999649f-6shz8    Successfully assigned dev/myapp-676999649f-6shz8 to devops-lab-control-plane
+16m         Normal    SuccessfulDelete    replicaset/myapp-6559857b58   Deleted pod: myapp-6559857b58-lgtkm
+16m         Normal    SuccessfulCreate    replicaset/myapp-676999649f   Created pod: myapp-676999649f-6shz8
+16m         Normal    Created             pod/myapp-676999649f-6shz8    Container created
+16m         Normal    Killing             pod/myapp-6559857b58-lgtkm    Stopping container myapp
+15m         Warning   Unhealthy           pod/myapp-676999649f-6shz8    Readiness probe failed: Get "http://10.244.0.48:8080/health": dial tcp 10.244.0.48:8080: connect: connection refused
+15m         Normal    Pulled              pod/myapp-6559857b58-xkh65    Container image "ghcr.io/ccao94/devops-project:v2" already present on machine and can be accessed by the pod
+15m         Normal    Scheduled           pod/myapp-6559857b58-xkh65    Successfully assigned dev/myapp-6559857b58-xkh65 to devops-lab-control-plane
+15m         Normal    Started             pod/myapp-6559857b58-xkh65    Container started
+15m         Normal    Killing             pod/myapp-6559857b58-stxrt    Stopping container myapp
+15m         Normal    SuccessfulCreate    replicaset/myapp-6559857b58   Created pod: myapp-6559857b58-xkh65
+15m         Normal    SuccessfulDelete    replicaset/myapp-6559857b58   Deleted pod: myapp-6559857b58-stxrt
+15m         Normal    Created             pod/myapp-6559857b58-xkh65    Container created
+15m         Warning   Unhealthy           pod/myapp-6559857b58-xkh65    Readiness probe failed: Get "http://10.244.0.49:8080/health": dial tcp 10.244.0.49:8080: connect: connection refused
+15m         Normal    SuccessfulCreate    replicaset/myapp-6559857b58   Created pod: myapp-6559857b58-dvck8
+15m         Normal    SuccessfulDelete    replicaset/myapp-676999649f   Deleted pod: myapp-676999649f-6shz8
+15m         Warning   Unhealthy           pod/myapp-6559857b58-dvck8    Readiness probe failed: Get "http://10.244.0.50:8080/health": dial tcp 10.244.0.50:8080: connect: connection refused
+15m         Normal    Started             pod/myapp-6559857b58-dvck8    Container started
+15m         Normal    Created             pod/myapp-6559857b58-dvck8    Container created
+15m         Normal    Pulled              pod/myapp-6559857b58-dvck8    Container image "ghcr.io/ccao94/devops-project:v2" already present on machine and can be accessed by the pod
+15m         Normal    Scheduled           pod/myapp-6559857b58-dvck8    Successfully assigned dev/myapp-6559857b58-dvck8 to devops-lab-control-plane
+15m         Normal    Killing             pod/myapp-676999649f-6shz8    Stopping container myapp
+15m         Normal    Started             pod/myapp-6559857b58-9l94f    Container started
+15m         Warning   Unhealthy           pod/myapp-6559857b58-9l94f    Readiness probe failed: Get "http://10.244.0.51:8080/health": dial tcp 10.244.0.51:8080: connect: connection refused
+15m         Normal    Created             pod/myapp-6559857b58-9l94f    Container created
+15m         Normal    Pulled              pod/myapp-6559857b58-9l94f    Container image "ghcr.io/ccao94/devops-project:v2" already present on machine and can be accessed by the pod
+15m         Normal    Scheduled           pod/myapp-6559857b58-9l94f    Successfully assigned dev/myapp-6559857b58-9l94f to devops-lab-control-plane
+15m         Normal    SuccessfulDelete    replicaset/myapp-676999649f   Deleted pod: myapp-676999649f-7gbw8
+15m         Normal    SuccessfulCreate    replicaset/myapp-6559857b58   Created pod: myapp-6559857b58-9l94f
+15m         Normal    Killing             pod/myapp-676999649f-7gbw8    Stopping container myapp
+15m         Normal    SuccessfulDelete    replicaset/myapp-676999649f   Deleted pod: myapp-676999649f-pww4c
+15m         Normal    Killing             pod/myapp-676999649f-pww4c    Stopping container myapp
