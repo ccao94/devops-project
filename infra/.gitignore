@@ -1,0 +1,7 @@
+# local terraform files, never in git
+.terraform/
+*.tfstate*
+crash.log
+
+# tfvars holding secrets stay local
+*.secret.tfvars
