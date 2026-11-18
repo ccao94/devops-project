@@ -55,3 +55,16 @@ It is not strong isolation. Pods from different namespaces run on the same nodes
 The Deployment asks for 3 replicas. When we deleted a pod, the ReplicaSet controller (in the controller manager) saw only 2 and created a new one.
 
 We saw it in our test: the new pod was 111s old, the two others 3m25s (see `evidence/lab2/part2-dev.txt`).
+
+## Q3. What is the difference between a readiness and a liveness probe? What happens to traffic when readiness fails?
+
+The readiness probe ask the question: Is the pod ready to receive traffic ? The liveness probe ask the question: Is the container healthy and alive ?
+
+When readiness fails, the service stop sending requests to this pod. The requests go to another Ready pod. 
+
+## Q4. Is a Kubernetes Secret encrypted by default? How would you improve this?
+
+By default, a Kubernetes Secret is base64-encoded but not encrypted. To improve this, we can encrypt at rest in etcd. 
+
+## Q5. How does this pattern help with hybrid/multi-cloud deployments? What would differ between a real on-prem cluster and a cloud cluster?
+
