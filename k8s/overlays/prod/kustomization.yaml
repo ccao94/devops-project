@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: prod
+
+resources:
+- ../../base
+
+replicas:
+- name: myapp
+  count: 5
+
+images:
+- name: ghcr.io/ccao94/devops-project:640f471d0a267f320afec784cc7d4c953a2d4311
+  newTag: "local"
+
+labels:
+- pairs:
+    env: prod
+  includeSelectors: false
+  includeTemplates: true
+
+configMapGenerator:
+- name: myapp-config
+  literals:
+  - APP_ENV=prod

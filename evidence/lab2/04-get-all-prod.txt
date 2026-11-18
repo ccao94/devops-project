@@ -1,0 +1,16 @@
+NAME                         READY   STATUS    RESTARTS   AGE
+pod/myapp-75ddb454bb-49qsz   1/1     Running   0          28m
+pod/myapp-75ddb454bb-7jkbc   1/1     Running   0          28m
+pod/myapp-75ddb454bb-jlcqv   1/1     Running   0          28m
+pod/myapp-75ddb454bb-lfs6j   1/1     Running   0          28m
+pod/myapp-75ddb454bb-tjrnb   1/1     Running   0          28m
+
+NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/myapp   ClusterIP   10.96.181.244   <none>        80/TCP    31m
+
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/myapp   5/5     5            5           31m
+
+NAME                               DESIRED   CURRENT   READY   AGE
+replicaset.apps/myapp-75ddb454bb   5         5         5       28m
+replicaset.apps/myapp-bbfccc969    0         0         0       31m

@@ -1,0 +1,15 @@
+  Type    Reason             Age                 From                   Message
+  ----    ------             ----                ----                   -------
+  Normal  ScalingReplicaSet  26m                 deployment-controller  Scaled down replica set myapp-58d77d86f6 from 3 to 1
+  Normal  ScalingReplicaSet  26m                 deployment-controller  Scaled down replica set myapp-85db85865d from 1 to 0
+  Normal  ScalingReplicaSet  26m                 deployment-controller  Scaled up replica set myapp-6767878d45 from 0 to 1
+  Normal  ScalingReplicaSet  11m                 deployment-controller  Scaled up replica set myapp-58d77d86f6 from 1 to 2
+  Normal  ScalingReplicaSet  11m                 deployment-controller  Scaled up replica set myapp-6767878d45 from 1 to 2
+  Normal  ScalingReplicaSet  11m                 deployment-controller  Scaled down replica set myapp-6767878d45 from 2 to 1
+  Normal  ScalingReplicaSet  11m                 deployment-controller  Scaled up replica set myapp-676999649f from 0 to 1
+  Normal  ScalingReplicaSet  11m                 deployment-controller  Scaled down replica set myapp-6767878d45 from 1 to 0
+  Normal  ScalingReplicaSet  11m                 deployment-controller  Scaled up replica set myapp-676999649f from 1 to 2
+  Normal  ScalingReplicaSet  10m                 deployment-controller  Scaled down replica set myapp-58d77d86f6 from 2 to 1
+  Normal  ScalingReplicaSet  10m                 deployment-controller  Scaled up replica set myapp-676999649f from 2 to 3
+  Normal  ScalingReplicaSet  10m                 deployment-controller  Scaled down replica set myapp-58d77d86f6 from 1 to 0
+  Normal  ScalingReplicaSet  49s (x17 over 62m)  deployment-controller  (combined from similar events): Scaled up replica set myapp-54bb54fc5c from 0 to 1

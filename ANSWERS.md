@@ -11,3 +11,5 @@ It is not strong isolation. Pods from different namespaces run on the same nodes
 The Deployment asks for 3 replicas. When we deleted a pod, the ReplicaSet controller (in the controller manager) saw only 2 and created a new one.
 
 We saw it in our test: the new pod was 111s old, the two others 3m25s (see `evidence/lab2/part2-dev.txt`).
+
+## Q3. 

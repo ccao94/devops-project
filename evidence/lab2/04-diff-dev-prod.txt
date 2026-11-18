@@ -1,0 +1,44 @@
+3c3
+<   APP_ENV: dev
+---
+>   APP_ENV: prod
+7,9c7,9
+<     env: dev
+<   name: myapp-config-6m894k5c89
+<   namespace: dev
+---
+>     env: prod
+>   name: myapp-config-t28bd96kb5
+>   namespace: prod
+15c15
+<     env: dev
+---
+>     env: prod
+17c17
+<   namespace: dev
+---
+>   namespace: prod
+30c30
+<     env: dev
+---
+>     env: prod
+32c32
+<   namespace: dev
+---
+>   namespace: prod
+34c34
+<   replicas: 1
+---
+>   replicas: 5
+42c42
+<         env: dev
+---
+>         env: prod
+50c50
+<               name: myapp-config-6m894k5c89
+---
+>               name: myapp-config-t28bd96kb5
+56c56
+<         image: ghcr.io/ccao94/devops-project:dev
+---
+>         image: ghcr.io/ccao94/devops-project:local
