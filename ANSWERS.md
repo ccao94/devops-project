@@ -66,5 +66,38 @@ When readiness fails, the service stop sending requests to this pod. The request
 
 By default, a Kubernetes Secret is base64-encoded but not encrypted. To improve this, we can encrypt at rest in etcd. 
 
-## Q5. How does this pattern help with hybrid/multi-cloud deployments? What would differ between a real on-prem cluster and a cloud cluster?
+## Q5. How does this pattern help with hybrid/multi-cloud deployments ?
+
+The pattern keeps one definition of the application and only describes what changes for each target. All environments run the same application, with a fix in the base that reaches every environment, and the differences are easy to review with "kubectl kustomize" and "diff". One pipeline can build one image and deploy it to several clusters, each with its own overlay.
+
+# What would differ between a real on-prem cluster and a cloud cluster?
+
+An on-prem cluster and a cloud cluster would differ in their infrastructure. In the cloud, load balancers, storage, node autoscaling and the control plane are provided and managed by the provider. On-prem, the team must provide them itself. Identity, secrets, registry access, cost and compliance rules can also be different so these differences would go into the overlays.
+
+## Q6. Why did the broken rollout not take down the application?
+
+It does not take down the app beceause it only removes an old pod when a new pod is ready. Kubernetes created one pod with the broken image and waited for it to become ready. This pod never started because the image did not exist, so the rollout stopped there and no old pod was removed.
+
+## Q7. Starting from a pod running in production, how can you find the commit, the reviewer and the pipeline run that produced it?
+
+We first follow the owner references from the pod to its ReplicaSet and then to its Deployment. 
+
+On the Deployment, the annotations give :
+- the Git commit
+- the pipeline run URL
+- the owner and the ticket. 
+
+The image tag, pinned to a commit SHA, and the image digest of the running container also point to the exact build.
+
+With the commit, we can open the merged pull request on GitHub and see who reviewed it. 
+
+With the pipeline URL, we can read the build logs and the test results. This only works if the CI adds these annotations automatically and if the image tag is pinned, never "latest" 
+
+## Q8. Why is manual kubectl edit in production a traceability risk?
+
+A manual "kubectl edit" changes the cluster without a commit, a review or a ticket.
+
+The audit log can show who made the change but never why. The cluster no longer matches Git, so the annotations become wrong and the real state cannot be rebuilt from the repository.
+
+The change is also fragile because the next "kubectl apply" will overwrite it. It skips the tests and checks steps of the CI pipeline and it cannot be rolled back with the "git revert" command. Each changes should go through Git and the pipeline and if there is emergency fi, we should reported it in Git right away.
 
