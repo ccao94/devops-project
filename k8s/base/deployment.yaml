@@ -15,9 +15,30 @@ spec:
         app: myapp
     spec:
       containers:
-        - name: myapp
-          image: ghcr.io/ccao94/devops-project:local
-          # image loaded with kind load, so no pull from GHCR
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 8080
+      - name: myapp
+        image: ghcr.io/ccao94/devops-project:640f471d0a267f320afec784cc7d4c953a2d4311
+        # Image built by CI and pulled from GHCR
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          # Is the Pod ready to receive traffic?
+          httpGet: { path: /health, port: 8080 } # HTTP check on /health
+        livenessProbe:
+          # Is the container still alive?
+          httpGet: { path: /health, port: 8080 }
+          initialDelaySeconds: 10 # Wait 10 s after start before probing
+        resources:
+          requests: { cpu: 100m, memory: 128Mi } # Guaranteed minimum, used for scheduling
+          limits: { cpu: 500m, memory: 256Mi } # Hard cap: CPU throttled, memory OOM-killed
+        env:
+        - name: APP_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: myapp-config
+              key: APP_ENV
+        - name: API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: myapp-secret
+              key: API_KEY
