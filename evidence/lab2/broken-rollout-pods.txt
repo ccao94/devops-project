@@ -1,0 +1,5 @@
+NAME                     READY   STATUS             RESTARTS   AGE
+myapp-54bb54fc5c-hhmr2   0/1     ImagePullBackOff   0          49s
+myapp-6559857b58-c82hl   1/1     Running            0          6m57s
+myapp-6559857b58-scvpl   1/1     Running            0          6m46s
+myapp-6559857b58-stxrt   1/1     Running            0          6m35s

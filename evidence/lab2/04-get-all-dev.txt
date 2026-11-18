@@ -1,0 +1,21 @@
+NAME                         READY   STATUS    RESTARTS   AGE
+pod/myapp-6559857b58-stxrt   1/1     Running   0          11m
+
+NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/myapp   ClusterIP   10.96.217.154   <none>        80/TCP    123m
+
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/myapp   1/1     1            1           123m
+
+NAME                               DESIRED   CURRENT   READY   AGE
+replicaset.apps/myapp-54bb54fc5c   0         0         0       5m34s
+replicaset.apps/myapp-54c8475ddd   0         0         0       123m
+replicaset.apps/myapp-58d77d86f6   0         0         0       66m
+replicaset.apps/myapp-5dc86d56cb   0         0         0       82m
+replicaset.apps/myapp-6559857b58   1         1         1       11m
+replicaset.apps/myapp-6767878d45   0         0         0       31m
+replicaset.apps/myapp-676999649f   0         0         0       16m
+replicaset.apps/myapp-6d7b5fcf45   0         0         0       66m
+replicaset.apps/myapp-7576b4977    0         0         0       77m
+replicaset.apps/myapp-85db85865d   0         0         0       59m
+replicaset.apps/myapp-d6d4d875f    0         0         0       67m

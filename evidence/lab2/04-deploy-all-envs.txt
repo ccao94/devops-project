@@ -1,0 +1,4 @@
+NAMESPACE   NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+dev         myapp   1/1     1            1           123m
+prod        myapp   5/5     5            5           31m
+staging     myapp   2/2     2            2           31m
