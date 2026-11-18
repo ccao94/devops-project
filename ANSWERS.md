@@ -94,6 +94,8 @@ kubectl edit changes the cluster with no commit, no review and no ticket. The au
 
 The cluster no longer matches Git: the next kubectl apply overwrites the change, and git revert can't undo it. Every change, even an emergency fix, should go through Git and the pipeline.
 
+*AI use: during this lab, AI sometimes helped us debug problems and fix errors.*
+
 ---
 
 # Lab 3: Terraform, Environments and Ephemeral Previews
