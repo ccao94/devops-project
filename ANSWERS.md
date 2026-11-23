@@ -58,47 +58,62 @@ We saw it in our test: the new pod was 111s old, the two others 3m25s (see `evid
 
 ## Q3. What is the difference between a readiness and a liveness probe? What happens to traffic when readiness fails?
 
-Readiness checks if the pod can receive traffic. Liveness checks if the container is still alive, and restarts it if not.
+The readiness probe ask the question: Is the pod ready to receive traffic ? The liveness probe ask the question: Is the container healthy and alive ?
 
-When readiness fails, the Service stops sending requests to this pod. They go to the other ready pods.
+When readiness fails, the service stop sending requests to this pod. The requests go to another Ready pod. 
 
 ## Q4. Is a Kubernetes Secret encrypted by default? How would you improve this?
 
-No. A Secret is only base64-encoded, anyone who can read it can decode it. We can enable encryption at rest in etcd, limit access with RBAC, or use an external secret manager like Vault.
+By default, a Kubernetes Secret is base64-encoded but not encrypted. To improve this, we can encrypt at rest in etcd. 
 
 ## Q5. How does this pattern help with hybrid/multi-cloud deployments ?
 
-The base describes the app once, and each overlay only holds what changes for its target (here dev, staging, prod for on-prem, cloud A, cloud B). A fix in the base reaches every environment. One pipeline builds one image and deploys it everywhere with the right overlay.
+The pattern keeps one definition of the application and only describes what changes for each target. All environments run the same application, with a fix in the base that reaches every environment, and the differences are easy to review with "kubectl kustomize" and "diff". One pipeline can build one image and deploy it to several clusters, each with its own overlay.
 
-### What would differ between a real on-prem cluster and a cloud cluster?
+# What would differ between a real on-prem cluster and a cloud cluster?
 
-In the cloud, the provider manages the control plane, load balancers, storage and autoscaling. On-prem, the team runs all of that itself. These differences go into the overlays, for example the Service type (LoadBalancer in the cloud, NodePort on-prem).
-
-*AI assistance: AI helped us structure this answer.*
+An on-prem cluster and a cloud cluster would differ in their infrastructure. In the cloud, load balancers, storage, node autoscaling and the control plane are provided and managed by the provider. On-prem, the team must provide them itself. Identity, secrets, registry access, cost and compliance rules can also be different so these differences would go into the overlays.
 
 ## Q6. Why did the broken rollout not take down the application?
 
-A rolling update removes an old pod only when a new one is ready. The new pod never started because the image did not exist, so the rollout stopped and the old pods kept serving traffic.
+It does not take down the app beceause it only removes an old pod when a new pod is ready. Kubernetes created one pod with the broken image and waited for it to become ready. This pod never started because the image did not exist, so the rollout stopped there and no old pod was removed.
 
 ## Q7. Starting from a pod running in production, how can you find the commit, the reviewer and the pipeline run that produced it?
 
-We go up from the pod to its ReplicaSet, then to its Deployment (owner references). The Deployment annotations give the commit SHA, the pipeline run URL, the owner and the ticket.
+We first follow the owner references from the pod to its ReplicaSet and then to its Deployment. 
 
-From the commit, we open the merged PR on GitHub and see who reviewed it. From the run URL, we read the build and test logs. This only works if the CI writes these annotations and the image is pinned to a SHA, never latest.
+On the Deployment, the annotations give :
+- the Git commit
+- the pipeline run URL
+- the owner and the ticket. 
 
-*AI assistance: AI helped us list the steps of this traceability chain.*
+The image tag, pinned to a commit SHA, and the image digest of the running container also point to the exact build.
+
+With the commit, we can open the merged pull request on GitHub and see who reviewed it. 
+
+With the pipeline URL, we can read the build logs and the test results. This only works if the CI adds these annotations automatically and if the image tag is pinned, never "latest" 
 
 ## Q8. Why is manual kubectl edit in production a traceability risk?
 
-kubectl edit changes the cluster with no commit, no review and no ticket. The audit log shows who did it, but not why.
+A manual "kubectl edit" changes the cluster without a commit, a review or a ticket.
 
-The cluster no longer matches Git: the next kubectl apply overwrites the change, and git revert can't undo it. Every change, even an emergency fix, should go through Git and the pipeline.
+The audit log can show who made the change but never why. The cluster no longer matches Git, so the annotations become wrong and the real state cannot be rebuilt from the repository.
+
+The change is also fragile because the next "kubectl apply" will overwrite it. It skips the tests and checks steps of the CI pipeline and it cannot be rolled back with the "git revert" command. Each changes should go through Git and the pipeline and if there is emergency fi, we should reported it in Git right away.
 
 *AI use: during this lab, AI sometimes helped us debug problems and fix errors.*
 
 ---
 
 # Lab 3: Terraform, Environments and Ephemeral Previews
+
+## Deliverables
+
+- Terraform code: `infra/` (quickstart, `modules/webapp`, `envs/dev`, `envs/staging`, `preview`)
+- `infra/.gitignore` (state and `.terraform/` excluded) and committed `.terraform.lock.hcl` files
+- Drift detection: `evidence/lab3/part3-drift-refresh-only.txt` and `evidence/lab3/part3-drift-plan.txt`
+- Two isolated previews, then pr-42 destroyed: `evidence/lab3/part4-two-previews.txt` and `evidence/lab3/part4-after-destroy.txt`
+- Terraform CI: failing security scan ![failing scan](evidence/lab3/ci-security-failed.png) and passing run ![passing run](evidence/lab3/ci-security-passed.png)
 
 ## Q1. What did Terraform propose after you deleted the container by hand? What is this situation called?
 
@@ -111,3 +126,27 @@ The state can hold sensitive values, like passwords or IPs, in plain text. It al
 ## Q3. What are the advantages of one folder and one state per environment compared to workspaces?
 
 Each environment has its own state, so a mistake in dev can't touch staging or prod. You see which environment you work on from the folder name. With workspaces, the code and the backend are shared, and it's easy to apply in the wrong workspace by mistake.
+
+## Q4. Why is a remote backend with locking essential for a team? Which problems does it prevent?
+
+With a remote backend, the whole team uses the same state, not a copy on one laptop. Locking lets only one apply run at a time. Without it, two applies at once can corrupt the state or create the same resources twice, and the state is lost if the laptop is lost.
+
+## Q5. What information in a state file can be sensitive?
+
+Everything Terraform reads or creates: passwords, tokens, keys, connection strings, IPs and resource IDs. Values marked `sensitive` are hidden in the plan output but still stored in plain text in the state.
+
+## Q6. What could go wrong if the preview environment is never destroyed? List three mitigations.
+
+The namespace, pod and service keep running and keep using CPU and memory, which costs money on a real cluster. Old previews pile up, can still be reached, and nobody knows if they can be deleted.
+
+Mitigations: destroy the preview automatically when the PR is closed, add a TTL with labels like our `owner` and `expires`, and run a scheduled job that deletes expired previews.
+
+## Q7. Why run plan on a Pull Request but apply only after merge?
+
+plan changes nothing, so it is safe on any PR and reviewers can read what will change. apply changes real infrastructure, so it must only run once, on reviewed code, from the pipeline. In this lab, a module with a missing block was merged because nothing checked `infra/` on the PR: a validate or plan job would have blocked it.
+
+## Q8. Why should a CI pipeline use short-lived credentials (OIDC) rather than long-lived access keys?
+
+A long-lived key stored in the repo secrets works until someone revokes it: if it leaks, it can be used for months. With OIDC, the pipeline gets a token that lasts a few minutes and only works for this repo. No cloud secret is stored on GitHub.
+
+*AI use: AI helped us write the preview configuration and the Terraform workflow, and debug errors.*
