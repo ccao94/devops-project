@@ -60,7 +60,6 @@ resource "kubernetes_deployment" "app" {
           }
           security_context {
             allow_privilege_escalation = false
-            privileged                 = true
             read_only_root_filesystem  = true
             capabilities {
               drop = ["ALL"]
