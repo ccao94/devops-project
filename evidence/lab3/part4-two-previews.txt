@@ -1,0 +1,25 @@
+NAME    STATUS   AGE     LABELS
+pr-42   Active   3m46s   expires=2026-11-30,kubernetes.io/metadata.name=pr-42,owner=cao,pr=42,purpose=preview
+pr-43   Active   111s    expires=2026-11-30,kubernetes.io/metadata.name=pr-43,owner=cao,pr=43,purpose=preview
+NAME                         READY   STATUS    RESTARTS   AGE
+pod/myapp-69c648fd87-srzr5   1/1     Running   0          3m49s
+
+NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+service/myapp   ClusterIP   10.96.23.189   <none>        80/TCP    3m50s
+
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/myapp   1/1     1            1           3m49s
+
+NAME                               DESIRED   CURRENT   READY   AGE
+replicaset.apps/myapp-69c648fd87   1         1         1       3m49s
+NAME                         READY   STATUS    RESTARTS   AGE
+pod/myapp-69c648fd87-zkffv   1/1     Running   0          2m
+
+NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+service/myapp   ClusterIP   10.96.103.83   <none>        80/TCP    2m
+
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/myapp   1/1     1            1           2m
+
+NAME                               DESIRED   CURRENT   READY   AGE
+replicaset.apps/myapp-69c648fd87   1         1         1       2m
