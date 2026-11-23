@@ -1,0 +1,83 @@
+module.webapp.docker_image.nginx: Refreshing state... [id=sha256:6784fb0834aa7dbbe12e3d7471e69c290df3e6ba810dc38b34ae33d3c1c05f7dnginx:1.27]
+module.webapp.docker_container.web: Refreshing state... [id=89b5f92785964bcc83844f139f5310a157830dbbb4a93b3283c009001bec91a5]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the
+last "terraform apply" which may have affected this plan:
+
+  # module.webapp.docker_container.web has been deleted
+  - resource "docker_container" "web" {
+      - attach                                      = false -> null
+      - command                                     = [
+          - "nginx",
+          - "-g",
+          - "daemon off;",
+        ] -> null
+      - container_read_refresh_timeout_milliseconds = 15000 -> null
+      - cpu_shares                                  = 0 -> null
+      - entrypoint                                  = [
+          - "/docker-entrypoint.sh",
+        ] -> null
+      - env                                         = [] -> null
+      - hostname                                    = "89b5f9278596" -> null
+      - id                                          = "89b5f92785964bcc83844f139f5310a157830dbbb4a93b3283c009001bec91a5" -> null
+      - image                                       = "sha256:6784fb0834aa7dbbe12e3d7471e69c290df3e6ba810dc38b34ae33d3c1c05f7d" -> null
+      - init                                        = false -> null
+      - ipc_mode                                    = "private" -> null
+      - log_driver                                  = "local" -> null
+      - logs                                        = false -> null
+      - max_retry_count                             = 0 -> null
+      - memory                                      = 0 -> null
+      - memory_reservation                          = 0 -> null
+      - memory_swap                                 = 0 -> null
+      - must_run                                    = true -> null
+      - name                                        = "tf-web-dev" -> null
+      - network_data                                = [
+          - {
+              - gateway                   = "172.17.0.1"
+              - global_ipv6_prefix_length = 0
+              - ip_address                = "172.17.0.2"
+              - ip_prefix_length          = 16
+              - mac_address               = "4e:15:aa:0c:a4:2d"
+              - network_name              = "bridge"
+                # (2 unchanged attributes hidden)
+            },
+        ] -> null
+      - network_mode                                = "bridge" -> null
+      - privileged                                  = false -> null
+      - publish_all_ports                           = false -> null
+      - read_only                                   = false -> null
+      - remove_volumes                              = true -> null
+      - restart                                     = "no" -> null
+      - rm                                          = false -> null
+      - runtime                                     = "runc" -> null
+      - security_opts                               = [] -> null
+      - shm_size                                    = 64 -> null
+      - start                                       = true -> null
+      - stdin_open                                  = false -> null
+      - stop_signal                                 = "SIGQUIT" -> null
+      - stop_timeout                                = 0 -> null
+      - tty                                         = false -> null
+      - wait                                        = false -> null
+      - wait_timeout                                = 60 -> null
+        # (7 unchanged attributes hidden)
+
+      - ports {
+          - external = 8083 -> null
+          - internal = 80 -> null
+          - ip       = "0.0.0.0" -> null
+          - protocol = "tcp" -> null
+        }
+    }
+
+
+This is a refresh-only plan, so Terraform will not take any actions to undo
+these. If you were expecting these changes then you can apply this plan to
+record the updated values in the Terraform state without changing any remote
+objects.
+
+ÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇÔöÇ
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.

@@ -1,0 +1,54 @@
+name: terraform
+
+on:
+  pull_request:
+    paths: ["infra/**"]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - name: Format check
+        run: terraform fmt -check -recursive infra
+      # -backend=false: no state needed just to validate
+      - name: Validate dev
+        run: |
+          terraform -chdir=infra/envs/dev init -backend=false
+          terraform -chdir=infra/envs/dev validate
+      - name: Validate staging
+        run: |
+          terraform -chdir=infra/envs/staging init -backend=false
+          terraform -chdir=infra/envs/staging validate
+      - name: Validate preview
+        run: |
+          terraform -chdir=infra/preview init -backend=false
+          terraform -chdir=infra/preview validate
+
+  plan:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform -chdir=infra/envs/dev init
+      # plan only, never apply on a pull request
+      - run: terraform -chdir=infra/envs/dev plan -var-file=dev.tfvars -no-color > plan-dev.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: plan-dev
+          path: plan-dev.txt
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # fails the job if any check fails
+      - uses: bridgecrewio/checkov-action@v12
+        with:
+          directory: infra
+          framework: terraform
+          quiet: true
+          # image comes from a variable (commit SHA), checkov can't read it
+          skip_check: CKV_K8S_14,CKV_K8S_43
