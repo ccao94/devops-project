@@ -1,0 +1,3 @@
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS              PORTS                  NAMES
+e588fa3b9261   6784fb0834aa   "/docker-entrypoint.ÔÇª"   19 seconds ago       Up 18 seconds       0.0.0.0:8084->80/tcp   tf-web-staging
+89b5f9278596   6784fb0834aa   "/docker-entrypoint.ÔÇª"   About a minute ago   Up About a minute   0.0.0.0:8083->80/tcp   tf-web-dev

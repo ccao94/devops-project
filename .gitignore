@@ -38,3 +38,6 @@ build/
 ### Metals (Scala extension for VS Code) ###
 .metals/
 .bloop/
+
+### macOS ###
+.DS_Store
