@@ -5,6 +5,10 @@ terraform {
       version = "~> 3.0"
     }
   }
+  # "remote-like" shared folder, ignored by git (*.tfstate*)
+  backend "local" {
+    path = "../../state/dev.tfstate"
+  }
 }
 
 provider "docker" {}
