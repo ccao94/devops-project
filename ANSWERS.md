@@ -44,6 +44,14 @@ The pipeline stops at the first failing step. If a test fails, no image is built
 
 # Lab 2: Kubernetes, Multi-environment Deployment and Audit
 
+## Deliverables
+
+- Manifests: `k8s/base/`, `k8s/overlays/dev`, `k8s/overlays/staging`, `k8s/overlays/prod`
+- `kubectl get all` per namespace: `evidence/lab2/04-get-all-dev.txt`, `evidence/lab2/04-get-all-staging.txt`, `evidence/lab2/04-get-all-prod.txt` (summary: `evidence/lab2/04-deploy-all-envs.txt`)
+- Rolling update: `evidence/lab2/05-rollout-v2.txt` ![no downtime](evidence/lab2/05-no-downtime.png)
+- Failed rollout and rollback: `evidence/lab2/05-broken-rollout-pods.txt`, `evidence/lab2/05-history-before-undo.txt`, `evidence/lab2/05-history-after-undo.txt` ![broken rollout](evidence/lab2/05-broken-rollout-status.png)
+- RBAC: `k8s/rbac/viewer.yaml` and `evidence/lab2/06-auth-can-i.txt`
+
 ## Q1. What is the role of a namespace? Does it provide strong security isolation by itself?
 
 A namespace splits one cluster into separate spaces, here dev, staging and prod. Names only have to be unique inside a namespace, and RBAC rules or quotas can be set per namespace.
