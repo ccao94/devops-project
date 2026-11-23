@@ -47,9 +47,6 @@ resource "kubernetes_deployment" "app" {
       spec {
         # run as the non-root user created in our Dockerfile
         security_context {
-          allow_privilege_escalation = false
-          privileged                 = true
-          read_only_root_filesystem  = true
           run_as_non_root = true
           run_as_user     = 10001
         }
@@ -63,6 +60,7 @@ resource "kubernetes_deployment" "app" {
           }
           security_context {
             allow_privilege_escalation = false
+            privileged                 = true
             read_only_root_filesystem  = true
             capabilities {
               drop = ["ALL"]
