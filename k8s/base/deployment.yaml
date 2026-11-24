@@ -21,6 +21,12 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
+        startupProbe:
+          # Spring Boot can take ~40 s to start with actuator and a 500m CPU limit:
+          # liveness and readiness only start once this probe succeeds (max 24 x 5 s = 2 min)
+          httpGet: { path: /health, port: 8080 }
+          periodSeconds: 5
+          failureThreshold: 24
         readinessProbe:
           # Is the Pod ready to receive traffic?
           httpGet: { path: /health, port: 8080 } # HTTP check on /health

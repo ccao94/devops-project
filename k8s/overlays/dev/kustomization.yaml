@@ -12,7 +12,7 @@ replicas:
 
 images:
 - name: ghcr.io/ccao94/devops-project:640f471d0a267f320afec784cc7d4c953a2d4311
-  newTag: dev
+  newTag: 37bff70a7c8129bf23a73fcedbd0cd2af1104c3a
 
 labels:
 - pairs:
