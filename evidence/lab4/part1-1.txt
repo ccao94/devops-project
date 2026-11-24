@@ -1,0 +1,63 @@
+1..20 | % { curl.exe -s -o NUL -w "%{http_code}`n" http://localhost:8080/error }
+>> 1..5 | % { curl.exe -s http://localhost:8080/slow; "" }
+>> curl.exe -s http://localhost:8080/metrics | Select-String "/slow|/error"
+200
+200
+200
+200
+200
+200
+200
+200
+200
+500
+200
+500
+200
+200
+200
+200
+500
+200
+200
+200
+{"delay_ms":471,"endpoint":"slow"}
+{"delay_ms":143,"endpoint":"slow"}
+{"delay_ms":537,"endpoint":"slow"}
+{"delay_ms":132,"endpoint":"slow"}
+{"delay_ms":1611,"endpoint":"slow"}
+
+http_request_duration_seconds_bucket{method="GET",route="/error",le="0.05"} 60
+http_request_duration_seconds_bucket{method="GET",route="/error",le="0.1"} 60
+http_request_duration_seconds_bucket{method="GET",route="/error",le="0.3"} 60
+http_request_duration_seconds_bucket{method="GET",route="/error",le="0.5"} 60
+http_request_duration_seconds_bucket{method="GET",route="/error",le="1.0"} 60
+http_request_duration_seconds_bucket{method="GET",route="/error",le="2.0"} 60
+http_request_duration_seconds_bucket{method="GET",route="/error",le="+Inf"} 60
+http_request_duration_seconds_count{method="GET",route="/error"} 60
+http_request_duration_seconds_sum{method="GET",route="/error"} 0.1101444
+http_request_duration_seconds_bucket{method="GET",route="/slow",le="0.05"} 0
+http_request_duration_seconds_bucket{method="GET",route="/slow",le="0.1"} 0
+http_request_duration_seconds_bucket{method="GET",route="/slow",le="0.3"} 4
+http_request_duration_seconds_bucket{method="GET",route="/slow",le="0.5"} 5
+http_request_duration_seconds_bucket{method="GET",route="/slow",le="1.0"} 9
+http_request_duration_seconds_bucket{method="GET",route="/slow",le="2.0"} 15
+http_request_duration_seconds_bucket{method="GET",route="/slow",le="+Inf"} 15
+http_request_duration_seconds_count{method="GET",route="/slow"} 15
+http_request_duration_seconds_sum{method="GET",route="/slow"} 12.9763569
+http_request_duration_seconds_max{method="GET",route="/error"} 0.0023294
+http_request_duration_seconds_max{method="GET",route="/slow"} 1.6126167
+http_requests_total{method="GET",route="/error",status="200"} 44.0
+http_requests_total{method="GET",route="/error",status="500"} 16.0
+http_requests_total{method="GET",route="/slow",status="200"} 15.0
+http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="SERVER_ERROR",status="500",uri="/error"} 16
+http_server_requests_seconds_sum{error="none",exception="none",method="GET",outcome="SERVER_ERROR",status="500",uri="/error"} 
+0.0283938
+http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/error"} 44
+http_server_requests_seconds_sum{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/error"} 0.1153548
+http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/slow"} 15
+http_server_requests_seconds_sum{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/slow"} 12.9946908
+http_server_requests_seconds_max{error="none",exception="none",method="GET",outcome="SERVER_ERROR",status="500",uri="/error"} 
+0.0029272
+http_server_requests_seconds_max{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/error"} 0.0032175
+http_server_requests_seconds_max{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/slow"} 1.6132024
