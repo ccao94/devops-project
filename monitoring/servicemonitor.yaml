@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: myapp
+  namespace: monitoring
+  labels:
+    # kube-prometheus-stack only picks ServiceMonitors with the release label
+    release: monitoring
+spec:
+  # our app runs in dev, not in monitoring
+  namespaceSelector:
+    matchNames: ["dev"]
+  # selects the Service by its labels (the ones we added in service.yaml)
+  selector:
+    matchLabels:
+      app: myapp
+  endpoints:
+  - port: http        # name of the Service port, not the number
+    path: /metrics    # Leon mapped the actuator endpoint to /metrics
+    interval: 15s
