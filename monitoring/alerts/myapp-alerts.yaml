@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: myapp-alerts
+  namespace: monitoring
+  labels:
+    # same as the ServiceMonitor: the operator only loads rules with this label
+    release: monitoring
+spec:
+  groups:
+  - name: myapp
+    rules:
+    - alert: HighErrorRate
+      # share of 5xx over the last 2 min, without probes and Prometheus scrapes
+      expr: |
+        sum(rate(http_requests_total{namespace="dev", route!~"/health|/metrics", status=~"5.."}[2m]))
+        / sum(rate(http_requests_total{namespace="dev", route!~"/health|/metrics"}[2m])) > 0.10
+      # must stay true for 2 min before firing, so a short spike does not page anyone
+      for: 2m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Error rate above 10% on myapp (dev)"
+        description: "{{ $value | humanizePercentage }} of requests return 5xx."
+        runbook: "https://github.com/ccao94/devops-project/blob/main/docs/runbook.md"
